@@ -1,8 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Prisma schema para la prueba técnica fullstack PrevalentWare
+// Sistema de gestión de ingresos y egresos
 
 generator client {
   provider = "prisma-client-js"
@@ -14,15 +11,18 @@ datasource db {
 }
 
 model User {
-  id            String    @id
+  id            String        @id
   name          String
   email         String
   emailVerified Boolean
   image         String?
+  phone         String?
+  role          String        @default("ADMIN")
   createdAt     DateTime
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  transactions  Transaction[]
 
   @@unique([email])
   @@map("user")
@@ -71,4 +71,18 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  concept   String
+  amount    Float
+  date      DateTime
+  type      String   // "INGRESO" o "EGRESO"
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("transaction")
 }

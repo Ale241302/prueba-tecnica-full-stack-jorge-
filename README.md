@@ -1,117 +1,154 @@
 ## Prueba Técnica para Desarrollador Fullstack
 
-### Introducción
+### Sistema de Gestión de Ingresos y Egresos - FinanceApp
 
-El objetivo de esta prueba técnica es evaluar tus habilidades en el desarrollo de una aplicación fullstack. Deberás implementar un sistema de gestión de ingresos y egresos, la gestión de usuarios y la generación de reportes. El proyecto cuenta con [wireframes](<https://www.figma.com/design/2PINjveveJJ9ZAAwxwNoRK/Wireframes-(Copy)?node-id=0-1&t=6q0Q0id8YnjH9fJt-1>) que pueden servir de guía para el candidato. Sin embargo, el diseño de la interfaz de usuario es libre.
+Aplicación fullstack para la gestión de ingresos y egresos financieros, gestión de usuarios y generación de reportes.
 
-### Requisitos del Proyecto
+---
 
-#### Funcionalidades Principales
+### 🚀 Tecnologías Utilizadas
 
-1. **Roles y Permisos**
-   - **Roles:**
-     - **Usuario:** Solo puede acceder a la gestión de movimientos.
-     - **Administrador:** Puede ver los reportes, editar usuarios y agregar movimientos.
-   - **Nota:** Para efectos de prueba, todos los nuevos usuarios deben ser automáticamente asignados con el rol "ADMIN".
+- **Frontend:** Next.js (Pages Router), TypeScript, Tailwind CSS, Shadcn UI
+- **Backend:** Next.js API Routes (REST)
+- **Base de Datos:** PostgreSQL (Supabase) con Prisma ORM
+- **Autenticación:** Better Auth con GitHub como proveedor OAuth
+- **Gráficos:** Recharts
+- **Documentación API:** Swagger/OpenAPI (next-swagger-doc)
+- **Pruebas:** Jest + React Testing Library
 
-2. **Home**
-   - Página de inicio con un menú principal que permite la navegación a tres secciones:
-     - Sistema de gestión de ingresos y gastos (disponible para todos los roles)
-     - Gestión de usuarios (solo para administradores)
-     - Reportes (solo para administradores)
+---
 
-3. **Sistema de Gestión de Ingresos y Gastos**
-   - **Vista de Ingresos y Egresos**
-     - Implementar una tabla que muestre los ingresos y egresos registrados con las siguientes columnas:
-       - Concepto
-       - Monto
-       - Fecha
-       - Usuario
-     - Botón "Nuevo" para agregar un nuevo ingreso o egreso (solo para administradores).
-   - **Formulario de Nuevo Ingreso/Egreso**
-     - Formulario con los campos:
-       - Monto
-       - Concepto
-       - Fecha
-     - Botón para guardar el nuevo movimiento.
+### 📋 Funcionalidades
 
-4. **Gestión de Usuarios** (solo para administradores)
-   - **Vista de Usuarios**
-     - Tabla que muestre la lista de usuarios con las siguientes columnas:
-       - Nombre
-       - Correo
-       - Teléfono
-       - Acciones (editar usuario)
-   - **Formulario de Edición de Usuario**
-     - Formulario con los campos:
-       - Nombre
-       - Rol
-     - Botón para guardar los cambios.
+1. **Autenticación** — Inicio de sesión con GitHub OAuth
+2. **Roles y Permisos (RBAC)**
+   - **ADMIN:** Acceso completo a todas las secciones
+   - **USER:** Solo acceso a movimientos
+   - Nuevos usuarios se registran automáticamente con rol `ADMIN`
+3. **Gestión de Movimientos** — CRUD de ingresos y egresos con tabla y formulario
+4. **Gestión de Usuarios** — Tabla de usuarios con edición de nombre y rol (solo ADMIN)
+5. **Reportes** — Gráfico de barras por mes, saldo actual, descarga CSV (solo ADMIN)
+6. **Documentación API** — Swagger UI disponible en `/api/docs`
 
-5. **Reportes** (solo para administradores)
-   - Mostrar un gráfico de movimientos financieros.
-   - Mostrar el saldo actual.
-   - Botón para descargar el reporte en formato CSV.
+---
 
-### Requisitos Técnicos
+### 🛠️ Ejecución Local
 
-- **Tecnologías y Herramientas:**
-  - **Frontend:**
-    - Next.js utilizando `pages` router.
-    - TypeScript.
-    - Tailwind CSS.
-    - Shadcn para componentes de la interfaz de usuario.
-    - NextJS API routes para comunicación con el backend.
-  - **Backend:**
-    - NextJS API routes para implementar endpoints REST.
-    - Base de datos de Postgres en Supabase.
-     - **Documentación de API:** Implementar una ruta `/api/docs` que exponga la documentación del API usando OpenAPI/Swagger. Cada endpoint creado debe estar completamente documentado con sus parámetros, respuestas y ejemplos.
-   - **Protección de Datos:**
-     - Implementar control de acceso basado en roles (RBAC) para asegurar que solo los usuarios autorizados puedan acceder a ciertas funcionalidades y datos.
-     - Proteger el backend para que rechace conexiones no autenticadas.
-   - **Autenticación:**
-     - Utilizar [Better Auth](https://www.better-auth.com/) con [GitHub](https://github.com/settings/developers) como proveedor de autenticación y [Prisma](https://prisma.io) como adaptador para la autenticación por sesiones de base de datos.
-     - **IMPORTANTE:** Todos los nuevos usuarios que se registren deben ser automáticamente asignados con el rol "ADMIN" para facilitar las pruebas de la aplicación.
-   - **Pruebas unitarias**  - El candidato debe agregar al menos 3 pruebas unitarias donde considere necesario.
-  - **Despliegue:**
-    - Desplegar el proyecto en Vercel.
+#### Requisitos Previos
+- Node.js >= 18
+- Cuenta de Supabase (base de datos PostgreSQL)
+- Aplicación OAuth de GitHub configurada
 
-### Entregables
+#### 1. Clonar el Repositorio
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd prueba-tecnica-fullstack
+```
 
-1. **Código Fuente:**
-   - Repositorio en GitHub con el código fuente del proyecto.
-   - Incluir un archivo README con instrucciones claras sobre cómo ejecutar el proyecto localmente y cómo desplegarlo en Vercel.
+#### 2. Instalar Dependencias
+```bash
+npm install
+```
 
-2. **Despliegue:**
-   - Proyecto desplegado en Vercel con la URL proporcionada.
+#### 3. Configurar Variables de Entorno
+Crear un archivo `.env` en la raíz del proyecto:
+```env
+DATABASE_URL="postgresql://usuario:contraseña@host:5432/basedatos"
+GITHUB_CLIENT_ID="tu_client_id_de_github"
+GITHUB_CLIENT_SECRET="tu_client_secret_de_github"
+BETTER_AUTH_SECRET="una_clave_secreta_aleatoria"
+NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000"
+```
 
-### Criterios de Evaluación
+#### 4. Migrar la Base de Datos
+```bash
+npx prisma db push
+npx prisma generate
+```
 
-- **Funcionalidad:**
-  - Cumplimiento de todos los requisitos funcionales.
-  - Correcta implementación del CRUD para ingresos, egresos y usuarios.
-  - Generación y descarga de reportes en formato CSV.
+#### 5. Ejecutar en Desarrollo
+```bash
+npm run dev
+```
+La aplicación estará disponible en `http://localhost:3000`
 
-- **Calidad del Código:**
-  - Calidad y claridad del código.
-  - Uso adecuado de las mejores prácticas de desarrollo.
-  - Estructura del proyecto.
-  - Documentación completa de la API con OpenAPI/Swagger.
+#### 6. Ejecutar Pruebas
+```bash
+npm test
+```
 
-- **Diseño y UX:**
-  - Usabilidad de la interfaz.
-  - Implementación de un diseño atractivo.
+---
 
-- **Pruebas y Documentación:**
-  - Cobertura de pruebas unitarias.
-  - Calidad de los comentarios dentro del proyecto.
+### 🌐 Despliegue en Vercel
 
-- **Seguridad:**
-  - Implementación efectiva de control de acceso basado en roles (RBAC).
-  - Protección adecuada de los datos sensibles.
+1. Conectar el repositorio de GitHub a Vercel
+2. Configurar las variables de entorno en el panel de Vercel:
+   - `DATABASE_URL`
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`
+   - `BETTER_AUTH_SECRET`
+   - `NEXT_PUBLIC_BETTER_AUTH_URL` (la URL de producción de Vercel)
+3. Actualizar la URL de callback en la app OAuth de GitHub al dominio de Vercel
+4. Desplegar
 
-- **Notas**:
-  - El aplicativo no debe contener diseño responsivo.
-  - El candidato puede utilizar el código cargado en este repositorio. Sin embargo, esta no es una condición necesaria y el candidato puede iniciar el proyecto de 0 si lo desea.
-  - El candidato puede cambiar las versiones de las librerías si lo considera necesario.
-  - El candidato debe compartir el acceso al repositorio de GitHub y el .env a los correos mlopera@prevalentware.com, jdsanchez@prevalentware.com y dfsorza@prevalentware.com
+---
+
+### 📁 Estructura del Proyecto
+
+```
+├── components/         # Componentes React reutilizables
+│   ├── ui/             # Componentes Shadcn UI
+│   └── Layout.tsx      # Layout principal con sidebar
+├── lib/
+│   ├── auth/           # Configuración de autenticación
+│   │   ├── index.ts    # Better Auth config (servidor)
+│   │   ├── client.ts   # Better Auth config (cliente)
+│   │   ├── context.tsx  # Contexto React de autenticación
+│   │   └── middleware.ts # Middleware RBAC para APIs
+│   ├── prisma.ts       # Singleton de PrismaClient
+│   └── utils.ts        # Utilidades (cn)
+├── pages/
+│   ├── api/
+│   │   ├── auth/       # Endpoints de Better Auth
+│   │   ├── transactions/ # CRUD de movimientos
+│   │   ├── users/      # Gestión de usuarios
+│   │   ├── reports/    # Reportes y CSV
+│   │   ├── docs.tsx    # Documentación Swagger
+│   │   └── me.ts       # Usuario actual
+│   ├── index.tsx       # Home / Dashboard
+│   ├── login.tsx       # Inicio de sesión
+│   ├── movimientos.tsx # Gestión de movimientos
+│   ├── usuarios.tsx    # Gestión de usuarios
+│   └── reportes.tsx    # Reportes financieros
+├── prisma/
+│   └── schema.prisma   # Esquema de base de datos
+├── __tests__/          # Pruebas unitarias
+└── styles/
+    └── globals.css     # Estilos globales
+```
+
+---
+
+### 📝 Documentación API
+
+La documentación completa de la API está disponible en `/api/docs` (Swagger UI).
+
+#### Endpoints Principales:
+| Método | Ruta | Descripción | Rol Requerido |
+|--------|------|-------------|---------------|
+| GET | `/api/me` | Usuario actual | Autenticado |
+| GET | `/api/transactions` | Listar movimientos | Autenticado |
+| POST | `/api/transactions` | Crear movimiento | ADMIN |
+| GET | `/api/users` | Listar usuarios | ADMIN |
+| PUT | `/api/users/:id` | Editar usuario | ADMIN |
+| GET | `/api/reports` | Datos de reportes | ADMIN |
+| GET | `/api/reports/csv` | Descargar CSV | ADMIN |
+
+---
+
+### 🧪 Pruebas Unitarias
+
+El proyecto incluye pruebas unitarias con Jest y React Testing Library:
+- **utils.test.ts** — Pruebas de la utilidad `cn` para fusión de clases CSS
+- **transactions.test.ts** — Validaciones del API de transacciones
+- **login.test.tsx** — Renderizado del componente de inicio de sesión
