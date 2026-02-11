@@ -139,6 +139,8 @@ La documentación completa de la API está disponible en `/api/docs` (Swagger UI
 | GET | `/api/me` | Usuario actual | Autenticado |
 | GET | `/api/transactions` | Listar movimientos | Autenticado |
 | POST | `/api/transactions` | Crear movimiento | ADMIN |
+| PUT | `/api/transactions/:id` | Editar movimiento | ADMIN |
+| DELETE | `/api/transactions/:id` | Eliminar movimiento | ADMIN |
 | GET | `/api/users` | Listar usuarios | ADMIN |
 | PUT | `/api/users/:id` | Editar usuario | ADMIN |
 | GET | `/api/reports` | Datos de reportes | ADMIN |
