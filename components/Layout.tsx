@@ -10,8 +10,11 @@ import {
   LogOut,
   FileText,
   ChevronRight,
+  Moon,
+  Sun,
 } from 'lucide-react';
 import { useAuth } from '@/lib/auth/context';
+import { useTheme } from '@/lib/theme-context';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -57,6 +60,7 @@ const navItems = [
 export const Layout = ({ children }: LayoutProps) => {
   const router = useRouter();
   const { user, isAdmin, logout, loading } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   if (loading) {
     return (
@@ -78,23 +82,36 @@ export const Layout = ({ children }: LayoutProps) => {
   );
 
   return (
-    <div className='flex h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50'>
+    <div className='flex h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950'>
       {/* Sidebar */}
-      <aside className='flex w-72 flex-col border-r border-slate-200/80 bg-white/80 backdrop-blur-xl shadow-xl'>
-        {/* Logo */}
+      <aside className='flex w-72 flex-col border-r border-slate-200/80 bg-white/80 backdrop-blur-xl shadow-xl dark:border-slate-700/50 dark:bg-slate-900/80'>
+        {/* Logo + Theme Toggle */}
         <div className='flex items-center gap-3 px-6 py-6'>
           <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 shadow-lg shadow-blue-500/30'>
             <BarChart3 className='h-5 w-5 text-white' />
           </div>
-          <div>
-            <h1 className='text-lg font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent'>
+          <div className='flex-1'>
+            <h1 className='text-lg font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent dark:from-blue-400 dark:to-indigo-400'>
               FinanceApp
             </h1>
-            <p className='text-xs text-slate-500'>Gestión Financiera</p>
+            <p className='text-xs text-slate-500 dark:text-slate-400'>Gestión Financiera</p>
           </div>
+          <Button
+            variant='ghost'
+            size='icon'
+            onClick={toggleTheme}
+            className='h-9 w-9 rounded-lg text-slate-500 hover:text-amber-500 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-amber-400 dark:hover:bg-slate-800 transition-colors'
+            title={theme === 'light' ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'}
+          >
+            {theme === 'light' ? (
+              <Moon className='h-[18px] w-[18px]' />
+            ) : (
+              <Sun className='h-[18px] w-[18px]' />
+            )}
+          </Button>
         </div>
 
-        <Separator className='mx-4' />
+        <Separator className='mx-4 dark:bg-slate-700/50' />
 
         {/* Navegación */}
         <nav className='flex-1 px-3 py-4 space-y-1'>
@@ -104,12 +121,12 @@ export const Layout = ({ children }: LayoutProps) => {
               <Link key={item.href} href={item.href}>
                 <span
                   className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                    ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
                     }`}
                 >
                   <item.icon
-                    className={`h-5 w-5 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-600'}`}
+                    className={`h-5 w-5 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400'}`}
                   />
                   {item.label}
                   {isActive && (
@@ -121,19 +138,19 @@ export const Layout = ({ children }: LayoutProps) => {
           })}
         </nav>
 
-        <Separator className='mx-4' />
+        <Separator className='mx-4 dark:bg-slate-700/50' />
 
         {/* Usuario actual */}
         <div className='p-4'>
-          <div className='flex items-center gap-3 rounded-xl bg-slate-50 p-3'>
-            <Avatar className='h-10 w-10 border-2 border-white shadow-md'>
+          <div className='flex items-center gap-3 rounded-xl bg-slate-50 p-3 dark:bg-slate-800/50'>
+            <Avatar className='h-10 w-10 border-2 border-white shadow-md dark:border-slate-700'>
               <AvatarImage src={user.image || ''} alt={user.name} />
               <AvatarFallback className='bg-gradient-to-br from-blue-500 to-indigo-600 text-white text-sm font-bold'>
                 {user.name?.charAt(0)?.toUpperCase() || 'U'}
               </AvatarFallback>
             </Avatar>
             <div className='flex-1 min-w-0'>
-              <p className='text-sm font-semibold text-slate-800 truncate'>
+              <p className='text-sm font-semibold text-slate-800 truncate dark:text-slate-200'>
                 {user.name}
               </p>
               <Badge
@@ -147,7 +164,7 @@ export const Layout = ({ children }: LayoutProps) => {
               variant='ghost'
               size='icon'
               onClick={logout}
-              className='h-8 w-8 text-slate-400 hover:text-red-500 hover:bg-red-50'
+              className='h-8 w-8 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30'
               title='Cerrar sesión'
             >
               <LogOut className='h-4 w-4' />

@@ -80,10 +80,10 @@ export default function HomePage() {
       <div className='mx-auto max-w-5xl'>
         {/* Encabezado */}
         <div className='mb-8'>
-          <h1 className='text-3xl font-bold text-slate-800'>
+          <h1 className='text-3xl font-bold text-slate-800 dark:text-white'>
             ¡Bienvenido, {user.name}!
           </h1>
-          <p className='mt-2 text-slate-500'>
+          <p className='mt-2 text-slate-500 dark:text-slate-400'>
             Selecciona una sección para comenzar a gestionar tus finanzas.
           </p>
           <div className='mt-3 flex items-center gap-2'>
@@ -99,7 +99,7 @@ export default function HomePage() {
           {visibleSections.map((section) => (
             <Link key={section.href} href={section.href}>
               <Card
-                className={`group cursor-pointer border-slate-200/80 bg-white hover:border-slate-300 transition-all duration-300 hover:shadow-xl ${section.shadow} hover:-translate-y-1`}
+                className={`group cursor-pointer border-slate-200/80 bg-white hover:border-slate-300 transition-all duration-300 hover:shadow-xl ${section.shadow} hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-slate-600`}
               >
                 <CardHeader className='pb-3'>
                   <div
@@ -107,12 +107,12 @@ export default function HomePage() {
                   >
                     <section.icon className='h-6 w-6 text-white' />
                   </div>
-                  <CardTitle className='text-lg text-slate-800 group-hover:text-slate-900'>
+                  <CardTitle className='text-lg text-slate-800 group-hover:text-slate-900 dark:text-white'>
                     {section.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className='text-sm text-slate-500 leading-relaxed'>
+                  <CardDescription className='text-sm text-slate-500 leading-relaxed dark:text-slate-400'>
                     {section.description}
                   </CardDescription>
                   <div className='mt-4 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700'>

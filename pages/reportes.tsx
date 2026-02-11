@@ -142,8 +142,8 @@ export default function ReportsPage() {
       <div className='mx-auto max-w-6xl'>
         <div className='mb-6 flex items-center justify-between'>
           <div>
-            <h1 className='text-2xl font-bold text-slate-800'>Reportes</h1>
-            <p className='text-sm text-slate-500'>
+            <h1 className='text-2xl font-bold text-slate-800 dark:text-white'>Reportes</h1>
+            <p className='text-sm text-slate-500 dark:text-slate-400'>
               Visualiza las estadísticas financieras del sistema
             </p>
           </div>
@@ -238,7 +238,7 @@ export default function ReportsPage() {
             {/* Gráfico de barras */}
             <Card>
               <CardHeader>
-                <CardTitle className='text-lg text-slate-800'>
+                <CardTitle className='text-lg text-slate-800 dark:text-white'>
                   Movimientos por Mes
                 </CardTitle>
               </CardHeader>

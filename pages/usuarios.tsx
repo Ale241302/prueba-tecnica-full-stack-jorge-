@@ -138,8 +138,8 @@ export default function UsersPage() {
       </Head>
       <div className='mx-auto max-w-6xl'>
         <div className='mb-6'>
-          <h1 className='text-2xl font-bold text-slate-800'>Usuarios</h1>
-          <p className='text-sm text-slate-500'>
+          <h1 className='text-2xl font-bold text-slate-800 dark:text-white'>Usuarios</h1>
+          <p className='text-sm text-slate-500 dark:text-slate-400'>
             Gestiona los usuarios del sistema y sus roles
           </p>
         </div>
@@ -160,7 +160,7 @@ export default function UsersPage() {
             ) : (
               <Table>
                 <TableHeader>
-                  <TableRow className='bg-slate-50/80'>
+                  <TableRow className='bg-slate-50/80 dark:bg-slate-800/50'>
                     <TableHead className='font-semibold'>Usuario</TableHead>
                     <TableHead className='font-semibold'>Correo</TableHead>
                     <TableHead className='font-semibold'>Teléfono</TableHead>
@@ -181,15 +181,15 @@ export default function UsersPage() {
                               {u.name?.charAt(0)?.toUpperCase() || 'U'}
                             </AvatarFallback>
                           </Avatar>
-                          <span className='font-medium text-slate-800'>
+                          <span className='font-medium text-slate-800 dark:text-slate-200'>
                             {u.name}
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell className='text-slate-600'>
+                      <TableCell className='text-slate-600 dark:text-slate-300'>
                         {u.email}
                       </TableCell>
-                      <TableCell className='text-slate-600'>
+                      <TableCell className='text-slate-600 dark:text-slate-300'>
                         {u.phone || <span className='text-slate-400'>—</span>}
                       </TableCell>
                       <TableCell>

@@ -244,8 +244,8 @@ export default function TransactionsPage() {
         {/* Encabezado */}
         <div className='mb-6 flex items-center justify-between'>
           <div>
-            <h1 className='text-2xl font-bold text-slate-800'>Movimientos</h1>
-            <p className='text-sm text-slate-500'>
+            <h1 className='text-2xl font-bold text-slate-800 dark:text-white'>Movimientos</h1>
+            <p className='text-sm text-slate-500 dark:text-slate-400'>
               Gestiona los ingresos y egresos del sistema
             </p>
           </div>
@@ -479,7 +479,7 @@ export default function TransactionsPage() {
             ) : (
               <Table>
                 <TableHeader>
-                  <TableRow className='bg-slate-50/80'>
+                  <TableRow className='bg-slate-50/80 dark:bg-slate-800/50'>
                     <TableHead className='font-semibold'>Concepto</TableHead>
                     <TableHead className='font-semibold'>Monto</TableHead>
                     <TableHead className='font-semibold'>Tipo</TableHead>
@@ -499,8 +499,8 @@ export default function TransactionsPage() {
                       <TableCell>
                         <span
                           className={`font-semibold ${t.type === 'INGRESO'
-                              ? 'text-emerald-600'
-                              : 'text-red-600'
+                            ? 'text-emerald-600'
+                            : 'text-red-600'
                             }`}
                         >
                           {t.type === 'INGRESO' ? '+' : '-'}$
@@ -528,10 +528,10 @@ export default function TransactionsPage() {
                           {t.type}
                         </Badge>
                       </TableCell>
-                      <TableCell className='text-slate-600'>
+                      <TableCell className='text-slate-600 dark:text-slate-300'>
                         {new Date(t.date).toLocaleDateString('es-CO')}
                       </TableCell>
-                      <TableCell className='text-slate-600'>
+                      <TableCell className='text-slate-600 dark:text-slate-300'>
                         {t.user.name}
                       </TableCell>
                       {isAdmin && (
