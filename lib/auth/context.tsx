@@ -6,6 +6,7 @@ import React, {
   useState,
   useCallback,
 } from 'react';
+import { authClient } from '@/lib/auth-client';
 
 interface User {
   id: string;
@@ -28,9 +29,9 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   loading: true,
   isAdmin: false,
-  login: () => {},
-  logout: async () => {},
-  refreshUser: async () => {},
+  login: () => { },
+  logout: async () => { },
+  refreshUser: async () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -59,14 +60,16 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     fetchUser();
   }, [fetchUser]);
 
-  const login = () => {
-    // Redirigir a Better Auth GitHub OAuth
-    window.location.href = '/api/auth/sign-in/social?provider=github';
+  const login = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "github",
+      callbackURL: "/"
+    });
   };
 
   const logout = async () => {
     try {
-      await fetch('/api/auth/sign-out', { method: 'POST' });
+      await authClient.signOut();
       setUser(null);
       window.location.href = '/login';
     } catch {
