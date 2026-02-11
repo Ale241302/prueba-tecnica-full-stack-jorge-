@@ -48,7 +48,7 @@ const navItems = [
   },
   {
     label: 'API Docs',
-    href: '/api/docs',
+    href: '/docs',
     icon: FileText,
     roles: ['ADMIN'],
   },
@@ -103,11 +103,10 @@ export const Layout = ({ children }: LayoutProps) => {
             return (
               <Link key={item.href} href={item.href}>
                 <span
-                  className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    isActive
+                  className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 cursor-pointer ${isActive
                       ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
                       : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   <item.icon
                     className={`h-5 w-5 ${isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-600'}`}
