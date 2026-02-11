@@ -152,8 +152,8 @@ export default function UsersPage() {
               </div>
             ) : users.length === 0 ? (
               <div className='py-12 text-center'>
-                <Users className='mx-auto h-12 w-12 text-slate-300' />
-                <p className='mt-4 text-slate-500'>
+                <Users className='mx-auto h-12 w-12 text-slate-300 dark:text-slate-600' />
+                <p className='mt-4 text-slate-500 dark:text-slate-400'>
                   No hay usuarios registrados.
                 </p>
               </div>
@@ -172,10 +172,10 @@ export default function UsersPage() {
                 </TableHeader>
                 <TableBody>
                   {users.map((u) => (
-                    <TableRow key={u.id} className='hover:bg-slate-50/50'>
+                    <TableRow key={u.id} className='hover:bg-slate-50/50 dark:hover:bg-slate-800/50'>
                       <TableCell>
                         <div className='flex items-center gap-3'>
-                          <Avatar className='h-9 w-9 border border-slate-200'>
+                          <Avatar className='h-9 w-9 border border-slate-200 dark:border-slate-700'>
                             <AvatarImage src={u.image || ''} alt={u.name} />
                             <AvatarFallback className='bg-gradient-to-br from-blue-500 to-indigo-600 text-white text-xs font-bold'>
                               {u.name?.charAt(0)?.toUpperCase() || 'U'}
@@ -214,7 +214,7 @@ export default function UsersPage() {
                           variant='ghost'
                           size='sm'
                           onClick={() => handleEdit(u)}
-                          className='text-blue-600 hover:text-blue-700 hover:bg-blue-50'
+                          className='text-blue-600 hover:text-blue-700 hover:bg-blue-50 dark:text-blue-400 dark:hover:text-blue-300 dark:hover:bg-blue-950/30'
                         >
                           <Pencil className='mr-1.5 h-4 w-4' />
                           Editar

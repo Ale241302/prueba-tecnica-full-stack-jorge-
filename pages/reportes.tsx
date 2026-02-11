@@ -165,15 +165,15 @@ export default function ReportsPage() {
           <>
             {/* Tarjetas de resumen */}
             <div className='mb-6 grid gap-4 md:grid-cols-4'>
-              <Card className='border-emerald-200/50 bg-gradient-to-br from-emerald-50 to-teal-50'>
+              <Card className='border-emerald-200/50 bg-gradient-to-br from-emerald-50 to-teal-50 dark:border-emerald-800/50 dark:from-emerald-950/40 dark:to-teal-950/40'>
                 <CardHeader className='flex flex-row items-center justify-between pb-2'>
-                  <CardTitle className='text-sm font-medium text-emerald-700'>
+                  <CardTitle className='text-sm font-medium text-emerald-700 dark:text-emerald-400'>
                     Total Ingresos
                   </CardTitle>
-                  <TrendingUp className='h-5 w-5 text-emerald-600' />
+                  <TrendingUp className='h-5 w-5 text-emerald-600 dark:text-emerald-400' />
                 </CardHeader>
                 <CardContent>
-                  <p className='text-2xl font-bold text-emerald-800'>
+                  <p className='text-2xl font-bold text-emerald-800 dark:text-emerald-300'>
                     $
                     {data.totalIncome.toLocaleString('es-CO', {
                       minimumFractionDigits: 2,
@@ -182,15 +182,15 @@ export default function ReportsPage() {
                 </CardContent>
               </Card>
 
-              <Card className='border-red-200/50 bg-gradient-to-br from-red-50 to-rose-50'>
+              <Card className='border-red-200/50 bg-gradient-to-br from-red-50 to-rose-50 dark:border-red-800/50 dark:from-red-950/40 dark:to-rose-950/40'>
                 <CardHeader className='flex flex-row items-center justify-between pb-2'>
-                  <CardTitle className='text-sm font-medium text-red-700'>
+                  <CardTitle className='text-sm font-medium text-red-700 dark:text-red-400'>
                     Total Egresos
                   </CardTitle>
-                  <TrendingDown className='h-5 w-5 text-red-600' />
+                  <TrendingDown className='h-5 w-5 text-red-600 dark:text-red-400' />
                 </CardHeader>
                 <CardContent>
-                  <p className='text-2xl font-bold text-red-800'>
+                  <p className='text-2xl font-bold text-red-800 dark:text-red-300'>
                     $
                     {data.totalExpense.toLocaleString('es-CO', {
                       minimumFractionDigits: 2,
@@ -200,17 +200,17 @@ export default function ReportsPage() {
               </Card>
 
               <Card
-                className={`border-blue-200/50 ${data.balance >= 0 ? 'bg-gradient-to-br from-blue-50 to-indigo-50' : 'bg-gradient-to-br from-orange-50 to-amber-50'}`}
+                className={`border-blue-200/50 dark:border-blue-800/50 ${data.balance >= 0 ? 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/40 dark:to-indigo-950/40' : 'bg-gradient-to-br from-orange-50 to-amber-50 dark:from-orange-950/40 dark:to-amber-950/40'}`}
               >
                 <CardHeader className='flex flex-row items-center justify-between pb-2'>
-                  <CardTitle className='text-sm font-medium text-blue-700'>
+                  <CardTitle className='text-sm font-medium text-blue-700 dark:text-blue-400'>
                     Saldo Actual
                   </CardTitle>
-                  <DollarSign className='h-5 w-5 text-blue-600' />
+                  <DollarSign className='h-5 w-5 text-blue-600 dark:text-blue-400' />
                 </CardHeader>
                 <CardContent>
                   <p
-                    className={`text-2xl font-bold ${data.balance >= 0 ? 'text-blue-800' : 'text-orange-800'}`}
+                    className={`text-2xl font-bold ${data.balance >= 0 ? 'text-blue-800 dark:text-blue-300' : 'text-orange-800 dark:text-orange-300'}`}
                   >
                     $
                     {data.balance.toLocaleString('es-CO', {
@@ -220,15 +220,15 @@ export default function ReportsPage() {
                 </CardContent>
               </Card>
 
-              <Card className='border-violet-200/50 bg-gradient-to-br from-violet-50 to-purple-50'>
+              <Card className='border-violet-200/50 bg-gradient-to-br from-violet-50 to-purple-50 dark:border-violet-800/50 dark:from-violet-950/40 dark:to-purple-950/40'>
                 <CardHeader className='flex flex-row items-center justify-between pb-2'>
-                  <CardTitle className='text-sm font-medium text-violet-700'>
+                  <CardTitle className='text-sm font-medium text-violet-700 dark:text-violet-400'>
                     Total Movimientos
                   </CardTitle>
-                  <Activity className='h-5 w-5 text-violet-600' />
+                  <Activity className='h-5 w-5 text-violet-600 dark:text-violet-400' />
                 </CardHeader>
                 <CardContent>
-                  <p className='text-2xl font-bold text-violet-800'>
+                  <p className='text-2xl font-bold text-violet-800 dark:text-violet-300'>
                     {data.totalTransactions}
                   </p>
                 </CardContent>
@@ -245,8 +245,8 @@ export default function ReportsPage() {
               <CardContent>
                 {chartData.length === 0 ? (
                   <div className='py-12 text-center'>
-                    <Activity className='mx-auto h-12 w-12 text-slate-300' />
-                    <p className='mt-4 text-slate-500'>
+                    <Activity className='mx-auto h-12 w-12 text-slate-300 dark:text-slate-600' />
+                    <p className='mt-4 text-slate-500 dark:text-slate-400'>
                       No hay datos suficientes para mostrar el gráfico.
                     </p>
                   </div>
