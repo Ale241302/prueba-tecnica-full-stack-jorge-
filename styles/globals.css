@@ -45,8 +45,8 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -70,8 +70,174 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', sans-serif;
   }
+}
+
+/* Swagger UI dark mode overrides */
+.dark .swagger-ui {
+  color: #e2e8f0;
+}
+
+.dark .swagger-ui .topbar {
+  background-color: #0f172a;
+}
+
+.dark .swagger-ui .scheme-container {
+  background: #1e293b;
+  box-shadow: none;
+  border: 1px solid #334155;
+}
+
+.dark .swagger-ui .opblock-tag {
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+
+.dark .swagger-ui .opblock-tag:hover {
+  background: rgba(51, 65, 85, 0.3);
+}
+
+.dark .swagger-ui .opblock {
+  border-color: #334155;
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.dark .swagger-ui .opblock .opblock-summary {
+  border-bottom-color: #334155;
+}
+
+.dark .swagger-ui .opblock .opblock-summary-description {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .opblock .opblock-section-header {
+  background: rgba(30, 41, 59, 0.8);
+  border-bottom-color: #334155;
+}
+
+.dark .swagger-ui .opblock .opblock-section-header h4,
+.dark .swagger-ui .opblock .opblock-section-header label {
+  color: #e2e8f0;
+}
+
+.dark .swagger-ui .opblock-body pre.microlight {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #334155;
+}
+
+.dark .swagger-ui table thead tr th,
+.dark .swagger-ui table thead tr td,
+.dark .swagger-ui .response-col_status,
+.dark .swagger-ui .response-col_description {
+  color: #e2e8f0;
+}
+
+.dark .swagger-ui .parameter__name,
+.dark .swagger-ui .parameter__type,
+.dark .swagger-ui .parameter__in {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .parameter__name.required span {
+  color: #f87171;
+}
+
+.dark .swagger-ui .model-box,
+.dark .swagger-ui section.models {
+  border-color: #334155;
+}
+
+.dark .swagger-ui section.models .model-container {
+  background: rgba(30, 41, 59, 0.5);
+  border-color: #334155;
+}
+
+.dark .swagger-ui section.models h4 {
+  color: #e2e8f0;
+  border-bottom-color: #334155;
+}
+
+.dark .swagger-ui .model {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .model-title {
+  color: #e2e8f0;
+}
+
+.dark .swagger-ui .prop-type {
+  color: #38bdf8;
+}
+
+.dark .swagger-ui .prop-format {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .info .title,
+.dark .swagger-ui .info h1,
+.dark .swagger-ui .info h2,
+.dark .swagger-ui .info h3 {
+  color: #f1f5f9;
+}
+
+.dark .swagger-ui .info p,
+.dark .swagger-ui .info li,
+.dark .swagger-ui .info table {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .btn.authorize {
+  color: #4ade80;
+  border-color: #4ade80;
+}
+
+.dark .swagger-ui .btn.authorize svg {
+  fill: #4ade80;
+}
+
+.dark .swagger-ui .dialog-ux .modal-ux {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .swagger-ui .dialog-ux .modal-ux-header h3 {
+  color: #e2e8f0;
+}
+
+.dark .swagger-ui .dialog-ux .modal-ux-content p {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui input[type=text],
+.dark .swagger-ui textarea {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+.dark .swagger-ui select {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-color: #334155;
+}
+
+.dark .swagger-ui .responses-inner {
+  border-bottom-color: #334155;
+}
+
+.dark .swagger-ui .response-col_description__inner p {
+  color: #94a3b8;
+}
+
+.dark .swagger-ui .arrow {
+  fill: #94a3b8;
+}
+
+.dark .swagger-ui svg.arrow {
+  fill: #94a3b8;
 }

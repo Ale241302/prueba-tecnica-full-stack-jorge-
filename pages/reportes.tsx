@@ -1,5 +1,6 @@
 // Página de reportes financieros (solo administradores)
 import { useEffect, useState, useCallback } from 'react';
+import { useTheme } from '@/lib/theme-context';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/lib/auth/context';
 import { Button } from '@/components/ui/button';
@@ -40,6 +41,7 @@ export default function ReportsPage() {
   const { user, loading, isAdmin } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
+  const { theme } = useTheme();
   const [data, setData] = useState<ReportData | null>(null);
   const [loadingData, setLoadingData] = useState(true);
   const [downloading, setDownloading] = useState(false);
@@ -150,7 +152,7 @@ export default function ReportsPage() {
           <Button
             onClick={handleDownloadCSV}
             disabled={downloading}
-            className='bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/25'
+            className='bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-lg shadow-emerald-500/25 text-white'
           >
             <Download className='mr-2 h-4 w-4' />
             {downloading ? 'Descargando...' : 'Descargar CSV'}
@@ -236,7 +238,7 @@ export default function ReportsPage() {
             </div>
 
             {/* Gráfico de barras */}
-            <Card>
+            <Card className='dark:bg-slate-800/80 dark:border-slate-700'>
               <CardHeader>
                 <CardTitle className='text-lg text-slate-800 dark:text-white'>
                   Movimientos por Mes
@@ -256,17 +258,19 @@ export default function ReportsPage() {
                       data={chartData}
                       margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                     >
-                      <CartesianGrid strokeDasharray='3 3' stroke='#e2e8f0' />
+                      <CartesianGrid strokeDasharray='3 3' stroke={theme === 'dark' ? '#334155' : '#e2e8f0'} />
                       <XAxis
                         dataKey='name'
-                        tick={{ fontSize: 12, fill: '#64748b' }}
+                        tick={{ fontSize: 12, fill: theme === 'dark' ? '#94a3b8' : '#64748b' }}
                       />
-                      <YAxis tick={{ fontSize: 12, fill: '#64748b' }} />
+                      <YAxis tick={{ fontSize: 12, fill: theme === 'dark' ? '#94a3b8' : '#64748b' }} />
                       <Tooltip
                         contentStyle={{
                           borderRadius: '12px',
-                          border: '1px solid #e2e8f0',
+                          border: theme === 'dark' ? '1px solid #334155' : '1px solid #e2e8f0',
                           boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                          backgroundColor: theme === 'dark' ? '#1e293b' : '#ffffff',
+                          color: theme === 'dark' ? '#e2e8f0' : '#1e293b',
                         }}
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         formatter={(value: any) => [

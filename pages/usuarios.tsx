@@ -144,7 +144,7 @@ export default function UsersPage() {
           </p>
         </div>
 
-        <Card>
+        <Card className='dark:bg-slate-800/80 dark:border-slate-700'>
           <CardContent className='p-0'>
             {loadingData ? (
               <div className='flex items-center justify-center py-12'>

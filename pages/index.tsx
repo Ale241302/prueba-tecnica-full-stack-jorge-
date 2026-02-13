@@ -99,7 +99,7 @@ export default function HomePage() {
           {visibleSections.map((section) => (
             <Link key={section.href} href={section.href}>
               <Card
-                className={`group cursor-pointer border-slate-200/80 bg-white hover:border-slate-300 transition-all duration-300 hover:shadow-xl ${section.shadow} hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-slate-600`}
+                className={`group cursor-pointer border-slate-200/80 bg-white hover:border-slate-300 transition-all duration-300 hover:shadow-xl ${section.shadow} hover:-translate-y-1 dark:border-slate-700 dark:bg-slate-800/80 dark:hover:border-slate-600 h-full flex flex-col`}
               >
                 <CardHeader className='pb-3'>
                   <div
@@ -107,15 +107,15 @@ export default function HomePage() {
                   >
                     <section.icon className='h-6 w-6 text-white' />
                   </div>
-                  <CardTitle className='text-lg text-slate-800 group-hover:text-slate-900 dark:text-white'>
+                  <CardTitle className='text-lg text-slate-800 group-hover:text-slate-900 dark:text-white dark:group-hover:text-white'>
                     {section.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className='flex-1 flex flex-col'>
                   <CardDescription className='text-sm text-slate-500 leading-relaxed dark:text-slate-400'>
                     {section.description}
                   </CardDescription>
-                  <div className='mt-4 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700'>
+                  <div className='mt-auto pt-4 flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700 dark:text-blue-400 dark:group-hover:text-blue-300'>
                     Ir a la sección
                     <ArrowRight className='ml-1.5 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1' />
                   </div>

@@ -252,7 +252,7 @@ export default function TransactionsPage() {
           {isAdmin && (
             <Button
               onClick={handleOpenNew}
-              className='bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25'
+              className='bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg shadow-blue-500/25 text-white'
             >
               <Plus className='mr-2 h-4 w-4' /> Nuevo Movimiento
             </Button>
@@ -463,7 +463,7 @@ export default function TransactionsPage() {
         </div>
 
         {/* Tabla de movimientos */}
-        <Card>
+        <Card className='dark:bg-slate-800/80 dark:border-slate-700'>
           <CardContent className='p-0'>
             {loadingData ? (
               <div className='flex items-center justify-center py-12'>
