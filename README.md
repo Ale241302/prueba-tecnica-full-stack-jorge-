@@ -1,8 +1,10 @@
-## Prueba Técnica para Desarrollador Fullstack
+# Prueba Técnica para Desarrollador Fullstack
 
-### Sistema de Gestión de Ingresos y Egresos - FinanceApp
+## Sistema de Gestión de Ingresos y Egresos - FinanceApp
 
 Aplicación fullstack para la gestión de ingresos y egresos financieros, gestión de usuarios y generación de reportes.
+
+🔗 **Demo en Vivo:** [https://prueba-tecnica-full-stack-jorge-roan.vercel.app/login](https://prueba-tecnica-full-stack-jorge-roan.vercel.app/login)
 
 ---
 
@@ -34,6 +36,8 @@ Aplicación fullstack para la gestión de ingresos y egresos financieros, gesti�
 
 ### 🛠️ Ejecución Local
 
+Para ejecutar el proyecto localmente, seguir estos pasos:
+
 #### Requisitos Previos
 - Node.js >= 18
 - Cuenta de Supabase (base de datos PostgreSQL)
@@ -41,8 +45,8 @@ Aplicación fullstack para la gestión de ingresos y egresos financieros, gesti�
 
 #### 1. Clonar el Repositorio
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd prueba-tecnica-fullstack
+git clone https://github.com/Ale241302/prueba-tecnica-full-stack-jorge-.git
+cd prueba-tecnica-full-stack-jorge-
 ```
 
 #### 2. Instalar Dependencias
@@ -51,11 +55,12 @@ npm install
 ```
 
 #### 3. Configurar Variables de Entorno
-Crear un archivo `.env` en la raíz del proyecto:
+Crear un archivo `.env` en la raíz del proyecto con el siguiente contenido (reemplazar los valores con las credenciales propias):
+
 ```env
 DATABASE_URL="postgresql://usuario:contraseña@host:5432/basedatos"
-GITHUB_CLIENT_ID="tu_client_id_de_github"
-GITHUB_CLIENT_SECRET="tu_client_secret_de_github"
+GITHUB_CLIENT_ID="client_id_de_github"
+GITHUB_CLIENT_SECRET="client_secret_de_github"
 BETTER_AUTH_SECRET="una_clave_secreta_aleatoria"
 NEXT_PUBLIC_BETTER_AUTH_URL="http://localhost:3000"
 ```
@@ -70,7 +75,7 @@ npx prisma generate
 ```bash
 npm run dev
 ```
-La aplicación estará disponible en `http://localhost:3000`
+La aplicación estará disponible en `http://localhost:3000`.
 
 #### 6. Ejecutar Pruebas
 ```bash
@@ -81,15 +86,18 @@ npm test
 
 ### 🌐 Despliegue en Vercel
 
-1. Conectar el repositorio de GitHub a Vercel
-2. Configurar las variables de entorno en el panel de Vercel:
-   - `DATABASE_URL`
-   - `GITHUB_CLIENT_ID`
-   - `GITHUB_CLIENT_SECRET`
-   - `BETTER_AUTH_SECRET`
-   - `NEXT_PUBLIC_BETTER_AUTH_URL` (la URL de producción de Vercel)
-3. Actualizar la URL de callback en la app OAuth de GitHub al dominio de Vercel
-4. Desplegar
+Para desplegar en Vercel:
+
+1. Importar el repositorio de GitHub en Vercel.
+2. Configurar las siguientes variables de entorno en el panel de Vercel:
+   - `DATABASE_URL`: `postgresql://...` (URL de conexión a la base de datos)
+   - `GITHUB_CLIENT_ID`: ID de la aplicación OAuth de GitHub (crear una específica para producción).
+   - `GITHUB_CLIENT_SECRET`: Clave secreta de la aplicación OAuth.
+   - `BETTER_AUTH_SECRET`: Clave secreta generada (ej. `openssl rand -base64 32`).
+   - `NEXT_PUBLIC_BETTER_AUTH_URL`: La URL de producción proporcionada por Vercel (ej. `https://prueba-tecnica-full-stack-jorge-roan.vercel.app`).
+   - `BETTER_AUTH_URL`: La misma URL de producción.
+3. Actualizar la "Authorization callback URL" en la configuración de la aplicación OAuth de GitHub con la URL de Vercel (ej. `https://prueba-tecnica-full-stack-jorge-roan.vercel.app/api/auth/callback/github`).
+4. Iniciar el despliegue.
 
 ---
 
