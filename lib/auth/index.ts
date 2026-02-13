@@ -11,6 +11,7 @@ export const auth = betterAuth({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
       scope: ["user:email", "read:user"],
+      overrideUserInfoOnSignIn: true, // Force update of user info (email) on sign in
       getUserInfo: async (token: any) => {
         // 1. Fetch GitHub profile
         const profileRes = await fetch("https://api.github.com/user", {
@@ -29,8 +30,8 @@ export const auth = betterAuth({
         const profile = await profileRes.json();
         let email = profile.email;
 
-        // 2. If no public email, fetch from /user/emails
-        if (!email) {
+        // 2. If no public email or it's a noreply email, fetch from /user/emails
+        if (!email || email.endsWith("noreply.github.com")) {
           try {
             const emailsRes = await fetch("https://api.github.com/user/emails", {
               headers: {

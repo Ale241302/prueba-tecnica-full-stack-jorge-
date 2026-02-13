@@ -54,12 +54,12 @@ const handler = async (req: AuthenticatedRequest, res: NextApiResponse) => {
     return res.status(400).json({ error: 'ID de usuario inválido.' });
   }
 
-  const { name, role } = req.body;
+  const { name, role, phone } = req.body;
 
-  if (!name && !role) {
+  if (!name && !role && phone === undefined) {
     return res.status(400).json({
       error:
-        'Debe proporcionar al menos un campo para actualizar (name, role).',
+        'Debe proporcionar al menos un campo para actualizar (name, role, phone).',
     });
   }
 
@@ -80,6 +80,7 @@ const handler = async (req: AuthenticatedRequest, res: NextApiResponse) => {
     data: {
       ...(name && { name }),
       ...(role && { role }),
+      ...(phone !== undefined && { phone }),
     },
     select: {
       id: true,

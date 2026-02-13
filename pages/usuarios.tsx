@@ -52,7 +52,7 @@ export default function UsersPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [loadingData, setLoadingData] = useState(true);
   const [editUser, setEditUser] = useState<User | null>(null);
-  const [editForm, setEditForm] = useState({ name: '', role: '' });
+  const [editForm, setEditForm] = useState({ name: '', role: '', phone: '' });
   const [submitting, setSubmitting] = useState(false);
 
   const fetchUsers = useCallback(async () => {
@@ -87,7 +87,7 @@ export default function UsersPage() {
 
   const handleEdit = (u: User) => {
     setEditUser(u);
-    setEditForm({ name: u.name, role: u.role });
+    setEditForm({ name: u.name, role: u.role, phone: u.phone || '' });
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -248,6 +248,17 @@ export default function UsersPage() {
                       setEditForm({ ...editForm, name: e.target.value })
                     }
                     required
+                  />
+                </div>
+                <div className='space-y-2'>
+                  <Label htmlFor='edit-phone'>Teléfono</Label>
+                  <Input
+                    id='edit-phone'
+                    value={editForm.phone}
+                    onChange={(e) =>
+                      setEditForm({ ...editForm, phone: e.target.value })
+                    }
+                    placeholder='+57 300 123 4567'
                   />
                 </div>
                 <div className='space-y-2'>
